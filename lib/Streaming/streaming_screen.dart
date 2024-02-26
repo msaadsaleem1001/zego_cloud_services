@@ -1,0 +1,37 @@
+
+import 'dart:math';
+import 'package:flutter/material.dart';
+import 'package:zego_uikit_prebuilt_live_streaming/zego_uikit_prebuilt_live_streaming.dart';
+
+class LivePage extends StatelessWidget {
+  final String liveID;
+  final bool isHost;
+
+  // ignore: use_super_parameters
+  const LivePage({Key? key, required this.liveID, this.isHost = false}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Random rand = Random();
+    const List<String> names = ['John', 'Jessie', 'Daniel', 'Brown', 'Doe', 'Saad', 'Saleem'];
+    final String userName = names[rand.nextInt(6)];
+    final int userID = rand.nextInt(3000000);
+    const int appID = 818676672;
+    const String appSign = 'cdb0b37e3275d103cc2c04c4ea4a12c9f5eccf6b29412afd9d00516b005ed508';
+    return SafeArea(
+      child: ZegoUIKitPrebuiltLiveStreaming(
+        appID: appID,// Fill in the appID that you get from ZEGOCLOUD Admin Console.
+        appSign: appSign,// Fill in the appSign that you get from ZEGOCLOUD Admin Console.
+        userID: userID.toString(),
+        userName: userName,
+        liveID: liveID,
+        config: isHost
+            ? ZegoUIKitPrebuiltLiveStreamingConfig.host()
+            : ZegoUIKitPrebuiltLiveStreamingConfig.audience(),
+        events: ZegoUIKitPrebuiltLiveStreamingEvents(
+          onError: (error) => debugPrint('Streaming Error : $error')
+        ),
+      ),
+    );
+  }
+}
