@@ -16,8 +16,8 @@ class LivePage extends StatelessWidget {
     const List<String> names = ['John', 'Jessie', 'Daniel', 'Brown', 'Doe', 'Saad', 'Saleem'];
     final String userName = names[rand.nextInt(6)];
     final int userID = rand.nextInt(3000000);
-    const int appID = 818676672;
-    const String appSign = 'cdb0b37e3275d103cc2c04c4ea4a12c9f5eccf6b29412afd9d00516b005ed508';
+    const int appID = 0;
+    const String appSign = 'Your app Sign in';
     return SafeArea(
       child: ZegoUIKitPrebuiltLiveStreaming(
         appID: appID,// Fill in the appID that you get from ZEGOCLOUD Admin Console.
